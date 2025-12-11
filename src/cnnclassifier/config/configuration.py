@@ -1,6 +1,6 @@
 import os
 from cnnclassifier.constants import *
-from cnnclassifier.entity.config_entity import DataIngestionConfig, ModelTrainConfig, PrepareBaseModelConfig
+from cnnclassifier.entity.config_entity import DataIngestionConfig, EvaluationConfig, ModelTrainConfig, PrepareBaseModelConfig
 from cnnclassifier.utils.common import read_yaml,create_directories
 
 
@@ -65,4 +65,17 @@ class ConfigurationManager:
         )
 
         return training_config
+    
+
+    def get_eval_config(self)->EvaluationConfig:
+        eval_config=EvaluationConfig(
+            path_to_model="artifacts/training/model.h5",
+            training_data='artifacts/data_ingestion/kidney-ct-scan-image', # type: ignore
+            all_params=self.params,
+            mlflow_uri='https://dagshub.com/kirankarakalli/Kideny-Disease-Classification-Deep-Learning-Project.dvc',
+            params_image_size=self.params.IMAGE_SIZE,
+            params_batch_size=self.params.BATCH_SIZE
+        )
+
+        return eval_config
 
