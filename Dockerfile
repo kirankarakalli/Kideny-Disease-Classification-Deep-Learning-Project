@@ -1,6 +1,6 @@
-FROM python:3.8-slim
+FROM python:3.13-alpine
 
-RUN apt update -y && apt install -y awscli
+RUN apk add --no-cache aws-cli
 
 WORKDIR /app
 COPY . /app
