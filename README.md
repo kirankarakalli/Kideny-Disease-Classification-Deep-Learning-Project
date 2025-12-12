@@ -28,7 +28,7 @@ STEP 02- install the requirements
     pip install -r requirements.txt
 
 # Finally run the following command
-dvc repro
+python main.py
 
 
 Create ECR repo to store/save docker image
